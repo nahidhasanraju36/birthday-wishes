@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Nowshin ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Falling Flowers Animation */
+        @keyframes fall {
+            0% { 
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 0.8; }
+            100% { 
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+        }
+
+        .flower {
+            position: fixed;
+            font-size: 30px;
+            animation: fall 12s infinite, sway 3s infinite;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Floating Hearts Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .heart {
+            position: fixed;
+            color: rgba(255, 182, 193, 0.7);
+            font-size: 20px;
+            animation: float 8s infinite;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 182, 193, 0.8);
+            margin-bottom: 10px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 182, 193, 0.8); }
+            50% { text-shadow: 0 0 30px rgba(255, 182, 193, 1), 0 0 40px rgba(255, 182, 193, 0.8); }
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+
+        /* Gallery Container */
+        .gallery {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #ff8e53, #ffd93d, #6bcf7f, #4d96ff, #a78bfa);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+            background: #f0f0f0;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card:hover .image-container img {
+            transform: scale(1.1);
+        }
+
+        .caption {
+            padding: 25px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 1));
+        }
+
+        .caption-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            font-weight: 400;
+        }
+
+        .bengali {
+            font-family: 'SolaimanLipi', 'Kalpurush', 'Noto Sans Bengali', serif;
+            font-size: 1.15rem;
+            color: #d946ef;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Loading State */
+        .loading {
+            text-align: center;
+            padding: 100px 20px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1.2rem;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .footer-heart {
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.2); }
+            50% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .image-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Happy Birthday Nowshin! 🎂</h1>
+        <p>To the most beautiful person in my universe ✨</p>
+    </div>
+
+    <div class="gallery" id="gallery">
+        <div class="loading">Loading beautiful memories... 💕</div>
+    </div>
+
+    <div class="footer">
+        Forever yours <span class="footer-heart">❤️</span>
+    </div>
+
+    <script>
+        // Romantic captions in English and Bengali
+        const captions = [
+            {
+                en: "Wishing you all the joy, love, and happiness in the universe!",
+                bn: "তোমার জন্য রইলো অসীম ভালোবাসা আর শুভকামনা 💝"
+            },
+            {
+                en: "You are as beautiful as a moonlit night",
+                bn: "জ্যোৎস্নারাতের মতো সুন্দর তুমি 🌙"
+            },
+            {
+                en: "Every moment with you is a treasure",
+                bn: "তোমার সাথে প্রতিটি মুহূর্ত আমার সবচেয়ে মূল্যবান সম্পদ "
+            },
+            {
+                en: "Baby you light up my world like nobody else",
+                bn: "✨"
+            },
+            {
+                en: "My heart beats only for you",
+                bn: "💓"
+            },
+            {
+                en: "You're the melody in my life's symphony",
+                bn: "🎵"
+            },
+            {
+                en: "With you, every day feels like a celebration",
+                bn: "🎉"
+            },
+            {
+                en: "You're my dream come true",
+                bn: "💫"
+            },
+            {
+                en: "In your eyes, I found my peace",
+                bn: "👁️"
+            },
+            {
+                en: "You make my heart smile",
+                bn: "😊"
+            },
+            {
+                en: "Forever grateful for your love",
+                bn: ""
+            },
+            {
+                en: "Together, we're unstoppable",
+                bn: " 💪"
+            },
+            {
+                en: "You're my favorite everything",
+                bn: " 💖"
+            },
+            {
+                en: "You're the best thing that ever happened to me",
+                bn: "🎁"
+            },
+            {
+                en: "Here's to making more wonderful memories together!",
+                bn: "আরও অনেক সুন্দর সুন্দর স্মৃতি তৈরির অপেক্ষায়. Cheers! 🥂"
+            }
+        ];
+
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+        setInterval(createHeart, 800);
+
+        // Create falling flowers (Dolonchapa, Poddo, Shieuly)
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            // Mix of flower emojis representing her favorites
+            const flowers = ['🌸', '🏵️', '🌺', '🪷', '💮', '🌼'];
+            flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+            flower.style.left = Math.random() * 100 + '%';
+            flower.style.animationDuration = (Math.random() * 4 + 8) + 's';
+            flower.style.animationDelay = Math.random() * 3 + 's';
+            document.body.appendChild(flower);
+            setTimeout(() => flower.remove(), 15000);
+        }
+
+        // Start flower animation
+        setInterval(createFlower, 1200);
+        // Create initial flowers
+        for(let i = 0; i < 5; i++) {
+            setTimeout(createFlower, i * 300);
+        }
+
+        // Load images and video from directory
+        const mediaFiles = [
+            { type: 'image', src: 'image1.jpg' },
+            { type: 'image', src: 'image2.jpg' },
+            { type: 'image', src: 'image3.jpg' },
+            { type: 'video', src: 'video1.mp4' },
+            { type: 'image', src: 'image4.jpg' },
+            { type: 'image', src: 'image5.jpg' },
+            { type: 'image', src: 'image6.jpg' },
+            { type: 'image', src: 'image7.jpg' },
+            { type: 'image', src: 'image8.jpg' },
+            { type: 'image', src: 'image9.jpg' },
+            { type: 'image', src: 'image10.jpg' },
+            { type: 'image', src: 'image11.jpg' },
+            { type: 'image', src: 'image12.jpg' },
+            { type: 'image', src: 'image13.jpg' },
+            { type: 'image', src: 'image14.jpg' },
+            { type: 'image', src: 'image15.jpg' }
+        ];
+
+        const gallery = document.getElementById('gallery');
+        gallery.innerHTML = '';
+
+        mediaFiles.forEach((media, index) => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            
+            const caption = captions[index % captions.length];
+            
+            let mediaContent = '';
+            if (media.type === 'video') {
+                mediaContent = `
+                    <video controls autoplay muted loop playsinline>
+                        <source src="${media.src}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                `;
+            } else {
+                mediaContent = `
+                    <img src="${media.src}" alt="Memory ${index + 1}" onerror="this.parentElement.parentElement.style.display='none'">
+                `;
+            }
+            
+            card.innerHTML = `
+                <div class="image-container">
+                    ${mediaContent}
+                </div>
+                <div class="caption">
+                    <div class="caption-text">${caption.en}</div>
+                    <div class="caption-text bengali">${caption.bn}</div>
+                </div>
+            `;
+            
+            gallery.appendChild(card);
+        });
+    </script>
+</body>
+</html>
